@@ -27,3 +27,33 @@ const addRandomItem = (items) => {
   items.unshift(randomNumber);
   return items;
 };
+
+////////////////////////Vacations //////////////////
+
+function makeLuggage(destinations) {
+  const items = [];
+  if (destinations.length === 0) return [];
+
+  items.push("appareil photo");
+
+  if (destinations.includes("forêt")) {
+    items.push("chaussures de rando");
+  }
+  if (destinations.includes("montagne")) {
+    items.push("crème solaire");
+    items.push("chaussures de rando");
+    items.push("skis");
+    items.push("bonnet");
+  }
+  if (destinations.includes("plage")) {
+    if (!destinations.includes("montagne")) {
+      items.push("crème solaire");
+    }
+    items.push("maillot de bain");
+  }
+
+  return items;
+}
+
+console.log(makeLuggage(["montagne", "plage"]));
+console.log(makeLuggage(["plage"]));
