@@ -57,3 +57,17 @@ function makeLuggage(destinations) {
 
 console.log(makeLuggage(["montagne", "plage"]));
 console.log(makeLuggage(["plage"]));
+
+////////////////////////////////////////////////////
+
+function reverseArray(myArray) {
+  let newArray = [];
+
+  for (let i = myArray.length - 1; i >= 0; i--) {
+    newArray.push(myArray[i]);
+  }
+
+  return newArray;
+}
+
+console.log(reverseArray(["a", "b", "c"]));
