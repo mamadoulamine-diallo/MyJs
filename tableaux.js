@@ -71,3 +71,15 @@ function reverseArray(myArray) {
 }
 
 console.log(reverseArray(["a", "b", "c"]));
+
+function namesWith(letter, names) {
+  let newNames = [];
+  let newLetter = letter.toLowerCase()
+  for (let i = 0; i < names.length; i++) {
+    if (names[i].toLowerCase().includes(newLetter)) {
+      newNames.push(names[i])
+    }
+  }
+  return newNames;
+}
+console.log(namesWith('a', ['Alex', 'Tom', 'Camille', 'Kim']))
