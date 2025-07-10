@@ -74,12 +74,41 @@ console.log(reverseArray(["a", "b", "c"]));
 
 function namesWith(letter, names) {
   let newNames = [];
-  let newLetter = letter.toLowerCase()
+  let newLetter = letter.toLowerCase();
   for (let i = 0; i < names.length; i++) {
     if (names[i].toLowerCase().includes(newLetter)) {
-      newNames.push(names[i])
+      newNames.push(names[i]);
     }
   }
   return newNames;
 }
-console.log(namesWith('a', ['Alex', 'Tom', 'Camille', 'Kim']))
+console.log(namesWith("a", ["Alex", "Tom", "Camille", "Kim"]));
+/////////////////////////////////////////////////////
+
+function arrayToFrench(fruits) {
+  if (fruits.length === 0) {
+    return "Mon tableau est vide.";
+  }
+
+  if (fruits.length === 1) {
+    return "Mon tableau contient " + fruits[0] + ".";
+  }
+  let sentence = "Mon tableau contient ";
+  for (let i = 0; i < fruits.length; i++) {
+    if (i === fruits.length - 1) {
+      sentence += "et " + fruits[i];
+    }
+    else if (i < fruits.length -2) {
+      sentence += fruits[i] + ", ";
+    }
+    else {
+      sentence += fruits[i] + " "
+    }
+  }
+  sentence += ".";
+  return sentence
+}
+console.log(arrayToFrench(["une banane"]));
+console.log(
+  arrayToFrench(["une banane", "un ananas", "une carotte", "une tomate"])
+);
