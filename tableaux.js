@@ -97,18 +97,32 @@ function arrayToFrench(fruits) {
   for (let i = 0; i < fruits.length; i++) {
     if (i === fruits.length - 1) {
       sentence += "et " + fruits[i];
-    }
-    else if (i < fruits.length -2) {
+    } else if (i < fruits.length - 2) {
       sentence += fruits[i] + ", ";
-    }
-    else {
-      sentence += fruits[i] + " "
+    } else {
+      sentence += fruits[i] + " ";
     }
   }
   sentence += ".";
-  return sentence
+  return sentence;
 }
 console.log(arrayToFrench(["une banane"]));
 console.log(
   arrayToFrench(["une banane", "un ananas", "une carotte", "une tomate"])
 );
+
+/////////////////////////////////////////////////////
+
+function neverTwoWithoutThree() {
+  const numbers = [];
+  let i = 0;
+  while (numbers.length < 50) {
+    let number = i.toString();
+    if (number.includes("2") && number.includes('3')) {
+      numbers.push(i);
+    }
+    i++;
+  }
+  return numbers;
+}
+console.log(neverTwoWithoutThree());
