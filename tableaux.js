@@ -118,7 +118,7 @@ function neverTwoWithoutThree() {
   let i = 0;
   while (numbers.length < 50) {
     let number = i.toString();
-    if (number.includes("2") && number.includes('3')) {
+    if (number.includes("2") && number.includes("3")) {
       numbers.push(i);
     }
     i++;
@@ -126,3 +126,63 @@ function neverTwoWithoutThree() {
   return numbers;
 }
 console.log(neverTwoWithoutThree());
+
+////////////////////////////////////////////
+
+const asciiBox = (width, height) => {
+  let result = "";
+
+  // Cas 1x1
+  if (width === 1 && height === 1) {
+    return "+\n";
+  }
+
+  // Cas ligne unique (height = 1)
+  if (height === 1) {
+    result += "+";
+    for (let i = 0; i < width - 2; i++) {
+      result += "-";
+    }
+    if (width > 1) result += "+";
+    result += "\n";
+    return result;
+  }
+
+  // Cas colonne unique (width = 1)
+  if (width === 1) {
+    result += "+\n";
+    for (let i = 0; i < height - 2; i++) {
+      result += "|\n";
+    }
+    result += "+\n";
+    return result;
+  }
+
+  // Bord haut
+  result += "+";
+  for (let i = 0; i < width - 2; i++) {
+    result += "-";
+  }
+  result += "+\n";
+
+  // Milieu
+  for (let i = 0; i < height - 2; i++) {
+    result += "|";
+    for (let j = 0; j < width - 2; j++) {
+      result += " ";
+    }
+    result += "|\n";
+  }
+
+  // Bord bas
+  result += "+";
+  for (let i = 0; i < width - 2; i++) {
+    result += "-";
+  }
+  result += "+\n";
+
+  return result;
+};
+
+console.log(asciiBox(1, 1));
+console.log(asciiBox(3, 3));
