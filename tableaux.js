@@ -186,3 +186,34 @@ const asciiBox = (width, height) => {
 
 console.log(asciiBox(1, 1));
 console.log(asciiBox(3, 3));
+
+///////////////////////////////////////////////////////////
+const commands = [
+  ["salade", "tomate", "viande"],
+  ["salade", "viande"],
+  ["salade", "tomate", "oignon", "viande"],
+];
+
+function makeKebabs(commands) {
+  for (let i = 0; i < commands.length; i++) {
+    commands[i].unshift("pain");
+    commands[i].push("pain");
+  }
+  return commands;
+}
+
+function addNeighbors(values) {
+  const result = [];
+  for (let i = 0; i < values.length; i++) {
+    let next;
+    if (i === values.length - 1) {
+      next = values[0]; 
+    } else {
+      next = values[i + 1];
+    }
+    result.push(values[i] + next);
+  }
+  return result;
+}
+
+console.log(addNeighbors([1, 2, 3]));
