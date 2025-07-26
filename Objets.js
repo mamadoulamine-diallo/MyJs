@@ -9,8 +9,6 @@ function present(person) {
 }
 ////////////////////////////////////////////////////
 
-// Ne modifie pas cet objet, mais utilise dans le code d'affichage
-
 const recipe = {
   introduction:
     "Voici une recette pour apprendre à réaliser des coques de macarons au chocolat.",
@@ -30,9 +28,8 @@ const recipe = {
   ],
 };
 
-// Écris ton code ci-dessous :
 console.log(recipe.introduction);
-console.log(""); // saut de ligne
+console.log("");
 
 console.log("Ingrédients :");
 for (let i = 0; i < recipe.ingredients.length; i++) {
@@ -40,9 +37,29 @@ for (let i = 0; i < recipe.ingredients.length; i++) {
   console.log(`- ${ingr.name} (${ingr.poids}g)`);
 }
 
-console.log(""); // saut de ligne
+console.log("");
 
 console.log("Instructions :");
 for (let i = 0; i < recipe.instructions.length; i++) {
   console.log(`${i + 1}. ${recipe.instructions[i]}`);
 }
+//////////////////////////////////////////////////////
+
+const person = {
+  name: "Lina",
+  hobbies: ["lecture", "musique", "natation"],
+};
+function printHobbies(person) {
+  console.log(`${person.name} aime :`);
+  for (let i = 0; i < person.hobbies.length; i++) {
+    console.log(`- ${person.hobbies[i]}`);
+  }
+}
+printHobbies(person);
+
+function addHobby(person, hobby) {
+  person.hobbies.push(hobby);
+}
+
+addHobby(person, "dessin");
+printHobbies(person);
