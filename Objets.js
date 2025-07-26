@@ -105,3 +105,33 @@ function getPokemonEvolution(name) {
 
   return null;
 }
+//////////////////////////////////////////////////////////
+
+// Retourne aléatoirement des éléments du tableau choice
+const randomChoice = (choices) => {
+  return choices[Math.floor(Math.random() * choices.length)];
+};
+
+// Retourne un nombre aléatoire, compris entre min et max.
+// Le nombre de chiffres après la virgule est défini par precision
+const randomRange = (min, max, precision) => {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(precision));
+};
+
+function generateFlowers(width, depth, count) {
+  const flowers = [];
+  const flowerTypes = ["🌹", "🌷", "🌻"];
+
+  for (let i = 0; i < count; i++) {
+    const flower = {
+      type: randomChoice(flowerTypes),
+      size: Math.floor(randomRange(15, 21, 0)), // 15 à 20 inclus
+      x: randomRange(0, width, 2),
+      y: randomRange(0, depth, 2),
+    };
+    flowers.push(flower);
+  }
+
+  return flowers;
+}
+console.log(generateFlowers(6, 6, 5));
