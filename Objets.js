@@ -45,21 +45,63 @@ for (let i = 0; i < recipe.instructions.length; i++) {
 }
 //////////////////////////////////////////////////////
 
-const person = {
-  name: "Lina",
-  hobbies: ["lecture", "musique", "natation"],
-};
-function printHobbies(person) {
-  console.log(`${person.name} aime :`);
-  for (let i = 0; i < person.hobbies.length; i++) {
-    console.log(`- ${person.hobbies[i]}`);
+const pokedex = [
+  { id: 1, name: "Bulbizarre", evolution: 2, type: "plante" },
+  { id: 2, name: "Herbizarre", evolution: 3, type: "plante" },
+  { id: 3, name: "Florizarre", evolution: -1, type: "plante" },
+  { id: 4, name: "Salamèche", evolution: 5, type: "feu" },
+  { id: 5, name: "Reptincel", evolution: 6, type: "feu" },
+  { id: 6, name: "Dracaufeu", evolution: -1, type: "feu" },
+  { id: 7, name: "Carapuce", evolution: 8, type: "eau" },
+  { id: 8, name: "Carabaffe", evolution: 9, type: "eau" },
+  { id: 9, name: "Tortank", evolution: -1, type: "eau" },
+];
+
+function countpokemonsFromType(y) {
+  let count = 0;
+  for (let i = 0; i < pokedex.length; i++) {
+    poke = pokedex[i];
+    if (poke.type === y) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countpokemonsFromType("feu"));
+
+function getPokemonsFromType(z) {
+  let result = [];
+  for (let i = 0; i < pokedex.length; i++) {
+    poke = pokedex[i];
+    if (poke.type === z) {
+      result.push(pokedex[i]);
+    }
+  }
+  return result;
+}
+console.log(getPokemonsFromType("eau"));
+
+function getPokemonFromName(n) {
+  for (let i = 0; i < pokedex.length; i++) {
+    poke = pokedex[i];
+    if (poke.name === n) {
+      return pokedex[i];
+    }
   }
 }
-printHobbies(person);
+console.log(getPokemonFromName("Carapuce"));
 
-function addHobby(person, hobby) {
-  person.hobbies.push(hobby);
+function getPokemonEvolution(name) {
+  const pokemon = getPokemonFromName(name);
+  if (!pokemon || pokemon.evolution === -1) {
+    return null;
+  }
+
+  for (let i = 0; i < pokedex.length; i++) {
+    if (pokedex[i].id === pokemon.evolution) {
+      return pokedex[i];
+    }
+  }
+
+  return null;
 }
-
-addHobby(person, "dessin");
-printHobbies(person);
