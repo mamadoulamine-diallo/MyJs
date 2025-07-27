@@ -25,3 +25,15 @@ times.forEach((t) => {
   timeHTML += `<option value="${t}">${t}</option>`;
 });
 time.innerHTML = timeHTML;
+
+////////////////////Panier/Piano///////////////////////
+
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', (event) => {
+  if (event.target.innerText === 'Panier 🧺' ) {
+    event.target.innerText = 'Piano 🎹'
+  } else {
+    event.target.innerText = 'Panier 🧺' 
+  }
+})
