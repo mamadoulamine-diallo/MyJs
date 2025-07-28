@@ -28,12 +28,31 @@ time.innerHTML = timeHTML;
 
 ////////////////////Panier/Piano///////////////////////
 
-const btn = document.querySelector('button');
+const btn = document.querySelector("button");
 
-btn.addEventListener('click', (event) => {
-  if (event.target.innerText === 'Panier 🧺' ) {
-    event.target.innerText = 'Piano 🎹'
+btn.addEventListener("click", (event) => {
+  if (event.target.innerText === "Panier 🧺") {
+    event.target.innerText = "Piano 🎹";
   } else {
-    event.target.innerText = 'Panier 🧺' 
+    event.target.innerText = "Panier 🧺";
   }
-})
+});
+
+//////////////////////////////////////////////////////////////
+
+const choices = document.querySelectorAll("#choices > div");
+const message = document.getElementById("message");
+
+choices.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    // Supprimer .selected de tous les enfants
+    choices.forEach((c) => c.classList.remove("selected"));
+
+    // Ajouter .selected à l'élément cliqué
+    choice.classList.add("selected");
+
+    // Mettre à jour le message avec le data-name
+    const name = choice.dataset.name;
+    message.innerText = `${name}, je te choisis !`;
+  });
+});
