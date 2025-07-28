@@ -1,5 +1,5 @@
 // ⚠️ ne supprime pas ces variables
-
+/*
 let people = [
   "une personne",
   "deux personnes",
@@ -56,3 +56,41 @@ choices.forEach((choice) => {
     message.innerText = `${name}, je te choisis !`;
   });
 });
+*/
+// Ne modifie pas cet objet, mais utilise dans le code d'affichage
+
+const recipe = {
+  introduction:
+    "Voici une recette pour apprendre à réaliser des coques de macarons au chocolat.",
+  ingredients: [
+    { name: `blanc d'œuf`, weight: 36 },
+    { name: `sucre en poudre`, weight: 27 },
+    { name: `poudre d'amande`, weight: 45 },
+    { name: `sucre glace`, weight: 47 },
+    { name: `cacao en poudre`, weight: 5 },
+  ],
+  instructions: [
+    `Mélanger la poudre d'amande, le cacao et le sucre glace`,
+    `Monter les blancs en neige et ajouter le sucre en poudre pour faire une meringue`,
+    `Ajoute la première préparation à la meringue`,
+    `Poche des petites boules puis laisse sécher`,
+    `Cuit le tout au four à 120 pendant 10-15 minutes`,
+  ],
+};
+
+// Écris ton code ci-dessous :
+const ingredients = document.getElementById('ingredients');
+const instructions = document.getElementById('instructions');
+let html = "";
+for (let i = 0; i < recipe.ingredients.length; i++) {
+  const ingr = recipe.ingredients[i];
+  html += `<li>${ingr.name}, (${ingr.weight}g) </li>`
+}
+ingredients.innerHTML = html
+
+let htmlInst = "";
+for (let i = 0; i < recipe.instructions.length; i++) {
+  const inst = recipe.instructions[i];
+  htmlInst += `<li>${inst}</li>`;
+}
+instructions.innerHTML = htmlInst

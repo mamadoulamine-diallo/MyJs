@@ -1,3 +1,4 @@
+/*
 function present(person) {
   const { name, age, city, isStudent } = person;
 
@@ -135,3 +136,4 @@ function generateFlowers(width, depth, count) {
   return flowers;
 }
 console.log(generateFlowers(6, 6, 5));
+*/
