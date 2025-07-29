@@ -79,18 +79,58 @@ const recipe = {
 };
 
 // Écris ton code ci-dessous :
-const ingredients = document.getElementById('ingredients');
-const instructions = document.getElementById('instructions');
-let html = "";
-for (let i = 0; i < recipe.ingredients.length; i++) {
-  const ingr = recipe.ingredients[i];
-  html += `<li>${ingr.name}, (${ingr.weight}g) </li>`
-}
-ingredients.innerHTML = html
+// Données de base
+const BASE_PEOPLE = 2; // la recette de base est pour 2 personnes
+let peopleCount = BASE_PEOPLE;
 
-let htmlInst = "";
-for (let i = 0; i < recipe.instructions.length; i++) {
-  const inst = recipe.instructions[i];
-  htmlInst += `<li>${inst}</li>`;
+const idPlus = document.getElementById("plus");
+const idMinus = document.getElementById("minus");
+const people = document.getElementById("peopleCount");
+const ingredientsList = document.getElementById("ingredients");
+const instructionsList = document.getElementById("instructions");
+
+// Fonction de mise à jour de l'affichage des ingrédients
+function updateIngredients() {
+  let html = "";
+  recipe.ingredients.forEach((ingr) => {
+    // On adapte le poids à la portion
+    const newWeight = Math.round((ingr.weight / BASE_PEOPLE) * peopleCount);
+    html += `<li>${ingr.name} (${newWeight}g)</li>`;
+  });
+  ingredientsList.innerHTML = html;
 }
-instructions.innerHTML = htmlInst
+
+// Fonction de mise à jour du nombre de personnes
+function updatePeopleText() {
+  people.innerText =
+    peopleCount === 1 ? "1 personne" : `${peopleCount} personnes`;
+}
+
+// Bouton +
+idPlus.addEventListener("click", () => {
+  if (peopleCount < 10) {
+    peopleCount++;
+    updatePeopleText();
+    updateIngredients();
+  }
+});
+
+// Bouton -
+idMinus.addEventListener("click", () => {
+  if (peopleCount > 1) {
+    peopleCount--;
+    updatePeopleText();
+    updateIngredients();
+  }
+});
+
+// Affichage initial
+updatePeopleText();
+updateIngredients();
+
+// Instructions (elles ne changent pas)
+let htmlInst = "";
+recipe.instructions.forEach((inst) => {
+  htmlInst += `<li>${inst}</li>`;
+});
+instructionsList.innerHTML = htmlInst;
