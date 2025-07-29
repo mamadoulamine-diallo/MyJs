@@ -1,0 +1,55 @@
+body {
+    color: #eeeeee;
+    background-color: #24242a;
+    font-family: monospace;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100svh;
+    gap: 0.5rem;
+}
+
+h1 {
+    font-size: 5rem;
+    margin: 0;
+}
+
+input[type="password"] {
+    color: #eeeeee;
+    border: 3px solid transparent;
+    font-family: monospace;
+    padding: 0.6em;
+    width: 15rem;
+    background-color: hsla(0, 0%, 100%, 0.2);
+}
+
+input[type="password"]:focus {
+    outline: transparent;
+    border: 3px solid #6677cf;
+}
+
+ul {
+    padding-left: 0;
+}
+
+ul > li {
+    list-style: none;
+    color: #bc4040;
+}
+
+ul > li::before {
+    content: '💀';
+    padding-right: 0.5em;
+}
+
+ul > li.ok {
+    color: #43b863;
+}
+
+ul > li.ok::before {
+    content: '👌';
+}
