@@ -15,3 +15,17 @@ async function orderPizza() {
 }
 /////////////////////////////////////////////////////////////////
 
+async function countOffers() {
+  try {
+    const response = await fetch("/api/offers");
+    const data = await response.json();
+
+    console.log(data);
+
+    return data.length;
+  } catch (error) {
+    console.error("Erreur lors du fetch :", error);
+  }
+}
+/////////////////////////////////////////////////////////////////
+
