@@ -40,3 +40,37 @@ async function getCountries(continent) {
     return []; // sécurité
   }
 }
+/////////////////////////////////////////////////////////////////
+
+const zodiacSymbols = {
+  Bélier: "♈️",
+  Taureau: "♉️",
+  Gémeaux: "♊️",
+  Cancer: "♋️",
+  Lion: "♌️",
+  Vierge: "♍️",
+  Balance: "♎️",
+  Scorpion: "♏️",
+  Sagittaire: "♐️",
+  Capricorne: "♑️",
+  Verseau: "♒️",
+  Poissons: "♓️",
+};
+
+const response = await fetch("/api/astrodev");
+const data = await response.json();
+
+const container = document.getElementById("profiles");
+
+let html = "";
+data.forEach((profile) => {
+  const symbol = zodiacSymbols[profile.sign] || "";
+  html += `
+    <article>
+      <h2>${symbol} ${profile.sign}</h2>
+      <p>${profile.description}</p>
+    </article>
+  `;
+});
+
+container.innerHTML = html;
