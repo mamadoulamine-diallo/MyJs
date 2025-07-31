@@ -29,3 +29,14 @@ async function countOffers() {
 }
 /////////////////////////////////////////////////////////////////
 
+async function getCountries(continent) {
+  try {
+    const response = await fetch(`/api/countries/${continent}`);
+    const data = await response.text(); // car ce n'est pas du JSON
+
+    return data.split(";"); // ✅ transforme en tableau
+  } catch (error) {
+    console.error("Erreur lors du fetch :", error);
+    return []; // sécurité
+  }
+}
