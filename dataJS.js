@@ -74,3 +74,74 @@ data.forEach((profile) => {
 });
 
 container.innerHTML = html;
+///////////////////////////////////////////////////////////
+
+const flows = document.querySelector("#flows");
+const sanskritButton = document.querySelector("#sanskrit");
+const englishButton = document.querySelector("#english");
+const emojisButton = document.querySelector("#emojis");
+
+sanskritButton.addEventListener("click", async () => {
+  sanskritButton.className = "selected";
+  englishButton.className = "";
+  emojisButton.className = "";
+
+  const response = await fetch("/api/yoga-translator?language=sanskrit");
+  const data = await response.json();
+
+  let html = "";
+  data.forEach((flow) => {
+    html += `
+            <article>
+                <h2>${flow.title}</h2>
+                <p>${flow.positions.join(", ")}</p>
+            </article>
+        `;
+  });
+
+  flows.innerHTML = html;
+});
+
+englishButton.addEventListener("click", async () => {
+  sanskritButton.className = "";
+  englishButton.className = "selected";
+  emojisButton.className = "";
+
+  const response = await fetch("/api/yoga-translator?language=english");
+  const data = await response.json();
+
+  let html = "";
+  data.forEach((flow) => {
+    html += `
+            <article>
+                <h2>${flow.title}</h2>
+                <p>${flow.positions.join(", ")}</p>
+            </article>
+        `;
+  });
+
+  flows.innerHTML = html;
+});
+
+emojisButton.addEventListener("click", async () => {
+  sanskritButton.className = "";
+  englishButton.className = "";
+  emojisButton.className = "selected";
+
+  const response = await fetch("/api/yoga-translator?language=emojis");
+  const data = await response.json();
+
+  let html = "";
+  data.forEach((flow) => {
+    html += `
+            <article>
+                <h2>${flow.title}</h2>
+                <p>${flow.positions.join(", ")}</p>
+            </article>
+        `;
+  });
+
+  flows.innerHTML = html;
+});
+
+sanskritButton.dispatchEvent(new MouseEvent("click"));
