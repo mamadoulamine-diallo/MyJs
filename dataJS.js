@@ -145,3 +145,56 @@ emojisButton.addEventListener("click", async () => {
 });
 
 sanskritButton.dispatchEvent(new MouseEvent("click"));
+//////////////////////////////////////////////////
+const promptInput = document.querySelector("#prompt");
+const sendButton = document.querySelector("#send");
+const messagesDiv = document.querySelector("#messages");
+
+const sendPrompt = async () => {
+  // Message de l'utilisateur
+  const userMessage = document.createElement("p");
+  userMessage.className = "user";
+  userMessage.innerText = promptInput.value;
+  messagesDiv.appendChild(userMessage);
+
+  // Message du bot
+  const botMessage = document.createElement("p");
+
+  try {
+    const response = await fetch("/api/fake-gpt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": "my_secret_key",
+      },
+      body: JSON.stringify({ prompt: promptInput.value }),
+    });
+
+    const data = await response.json();
+    botMessage.innerText = data.message;
+
+    // Si erreur côté serveur ou requête incorrecte
+    if (!response.ok) {
+      botMessage.classList.add("error");
+    }
+  } catch (error) {
+    // Erreur réseau
+    botMessage.innerText = "Erreur de connexion au serveur.";
+    botMessage.classList.add("error");
+  }
+
+  messagesDiv.appendChild(botMessage);
+
+  // Réinitialiser l'input
+  promptInput.value = "";
+};
+
+// Envoi avec Entrée
+promptInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendPrompt();
+  }
+});
+
+// Envoi avec le bouton
+sendButton.addEventListener("click", sendPrompt);
