@@ -198,3 +198,98 @@ promptInput.addEventListener("keydown", (event) => {
 
 // Envoi avec le bouton
 sendButton.addEventListener("click", sendPrompt);
+
+//////////////////////////////////////////////////
+let flavor = "blackTea";
+let firstname = "";
+let sugar = 30;
+let withIce = false;
+let withTapioca = false;
+
+/**
+ * @type {HTMLDialogElement}
+ */
+const commandDialog = document.querySelector("#command");
+
+/**
+ * @type {HTMLDivElement}
+ */
+const messageEl = document.querySelector("#message");
+
+document.querySelector("#orderBtn").addEventListener("click", async () => {
+  // On prépare les données à envoyer
+  const orderData = {
+    flavor,
+    firstname,
+    sugar,
+    withIce,
+    withTapioca,
+  };
+
+  try {
+    const response = await fetch("/api/orderbbt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    const result = await response.json();
+
+    // On affiche le message dans la div #message
+    messageEl.textContent = result.message;
+
+    // Si le statut n'est pas 200, on ajoute la classe error
+    if (!response.ok) {
+      messageEl.classList.add("error");
+    } else {
+      messageEl.classList.remove("error");
+    }
+
+    // On ouvre la boîte de dialogue
+    commandDialog.showModal();
+  } catch (error) {
+    // En cas d'erreur réseau
+    messageEl.textContent = "Erreur de connexion au serveur.";
+    messageEl.classList.add("error");
+    commandDialog.showModal();
+  }
+});
+
+const flavorEls = document.querySelectorAll("#flavors > div");
+for (const flavorEl of flavorEls) {
+  flavorEl.addEventListener("click", (event) => {
+    for (const el of flavorEls) {
+      el.classList.remove("selected");
+    }
+    event.currentTarget.classList.add("selected");
+    flavor = event.currentTarget.dataset.flavor;
+  });
+}
+
+document.querySelector("#firstnameInput").addEventListener("input", (event) => {
+  firstname = event.currentTarget.value;
+  console.log("firstname: ", firstname);
+});
+
+const sugarEl = document.querySelector("#sugar > .value");
+const sugars = [0, 30, 50, 100];
+let sugarIndex = 1;
+document.querySelector("#sugar > .minus").addEventListener("click", () => {
+  sugarIndex = sugarIndex === 0 ? 0 : sugarIndex - 1;
+  sugar = sugars[sugarIndex];
+  sugarEl.innerText = sugar + "%";
+});
+document.querySelector("#sugar > .plus").addEventListener("click", () => {
+  sugarIndex = sugarIndex >= sugars.length - 1 ? sugarIndex : sugarIndex + 1;
+  sugar = sugars[sugarIndex];
+  sugarEl.innerText = sugar + "%";
+});
+
+document.querySelector("#iceInput").addEventListener("change", (event) => {
+  withIce = event.currentTarget.checked;
+});
+document.querySelector("#tapiocaInput").addEventListener("change", (event) => {
+  withTapioca = event.currentTarget.checked;
+});
