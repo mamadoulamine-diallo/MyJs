@@ -294,7 +294,7 @@ document.querySelector("#tapiocaInput").addEventListener("change", (event) => {
   withTapioca = event.currentTarget.checked;
 });
 
-//////////SUCRE SYNTHAXIQUE///////////////////
+//////////Closures///////////////////
 
 function createCounter(start, end) {
   let current = start;
