@@ -293,3 +293,21 @@ document.querySelector("#iceInput").addEventListener("change", (event) => {
 document.querySelector("#tapiocaInput").addEventListener("change", (event) => {
   withTapioca = event.currentTarget.checked;
 });
+
+//////////SUCRE SYNTHAXIQUE///////////////////
+
+function createCounter(start, end) {
+  let current = start;
+
+  function getValue() {
+    return current;
+  }
+
+  function increase() {
+    if (current < end) {
+      current++;
+    }
+  }
+
+  return [getValue, increase];
+}
