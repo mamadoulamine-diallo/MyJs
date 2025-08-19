@@ -33,3 +33,23 @@ document.addEventListener("mousemove", (e) => {
   mouse3.style.left = e.pageX - 50 + "px";
   mouse3.style.top = e.pageY - 50 + "px";
 });
+
+///////////////////////////////////////////////////
+
+const nav = document.getElementById("navbar");
+
+let lastScrollY = window.scrollY;
+
+// Initialiser la nav à l'affichage
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > lastScrollY) {
+    // l’utilisateur descend -> cacher la navbar
+    nav.style.top = "-60px";
+  } else {
+    // l’utilisateur monte -> montrer la navbar
+    nav.style.top = "0";
+  }
+
+  lastScrollY = window.scrollY;
+});
