@@ -38,7 +38,6 @@ document.addEventListener("mousemove", (e) => {
 
 const nav = document.getElementById("navbar");
 
-let lastScrollY = window.scrollY;
 
 // Initialiser la nav à l'affichage
 
@@ -52,4 +51,37 @@ window.addEventListener("scroll", () => {
   }
 
   lastScrollY = window.scrollY;
+});
+////////////////////////////////////////////////////
+
+
+const imgImprovise = document.getElementById("imgImprovise");
+const popup = document.getElementById("popup");
+
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > lastScrollY) {
+    nav.style.height = "50px";
+  } else {
+    nav.style.height = "90px";
+  }
+  lastScrollY = window.scrollY;
+});
+
+window.addEventListener("scroll", () => {
+  imgImprovise.style.opacity = window.scrollY >= 350 ? "1" : "0";
+  imgImprovise.style.transform = "none";
+});
+
+function handlePopupScroll() {
+  popup.style.opacity = window.scrollY >= 900 ? "1" : "0";
+  popup.style.transform = "none";
+}
+
+window.addEventListener("scroll", handlePopupScroll);
+
+popup.addEventListener("click", () => {
+  popup.style.display = "none";
+  window.removeEventListener("scroll", handlePopupScroll);
 });
