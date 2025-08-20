@@ -38,7 +38,6 @@ document.addEventListener("mousemove", (e) => {
 
 const nav = document.getElementById("navbar");
 
-
 // Initialiser la nav à l'affichage
 
 window.addEventListener("scroll", () => {
@@ -53,7 +52,6 @@ window.addEventListener("scroll", () => {
   lastScrollY = window.scrollY;
 });
 ////////////////////////////////////////////////////
-
 
 const imgImprovise = document.getElementById("imgImprovise");
 const popup = document.getElementById("popup");
@@ -84,4 +82,16 @@ window.addEventListener("scroll", handlePopupScroll);
 popup.addEventListener("click", () => {
   popup.style.display = "none";
   window.removeEventListener("scroll", handlePopupScroll);
+});
+//////////////////////////////////////////////////////////
+
+const sideBar = document.getElementById("side-bar");
+const content = document.querySelector(".content");
+
+btn.addEventListener("click", () => {
+  sideBar.classList.toggle("active");
+});
+
+content.addEventListener("click", () => {
+  sideBar.classList.remove("active");
 });
