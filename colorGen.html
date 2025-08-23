@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Color Generator</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Generator</title>
 
-  <style>
-    #colorEl {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border: 1px solid gray;
-      padding: 8px;
-      border-radius: 2px;
-    }
-  </style>
-</head>
-<body>
+    <style>
+      #colorEl {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: 1px solid gray;
+        padding: 8px;
+        border-radius: 2px;
+      }
+      .task {
+        display: inline-block;
+        background: #333;
+        color: white;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <span id="colorEl">hello</span> -->
+    <form class="form">
+      <h1>Todo List</h1>
+      <input type="text" name="todo" id="todo" />
+    </form>
+    <div class="tasks"></div>
 
-  <span id="colorEl">hello</span>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <script src="colorGenerator.js"></script>
-</body>
+    <script src="colorGenerator.js"></script>
+  </body>
 </html>
