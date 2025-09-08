@@ -311,3 +311,41 @@ function createCounter(start, end) {
 
   return [getValue, increase];
 }
+//////////////Compte à Rebours/////////////////////////////////////////
+
+const inputEl = document.getElementById("choice");
+const form = document.getElementById("form");
+const countDisplay = document.getElementById("countdownDisplay");
+
+const playTimer = (minutes, seconds) => {
+  countDisplay.textContent =
+    minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+  const timer = setInterval(() => {
+    if (seconds > 0) {
+      seconds--;
+    } else {
+      if (minutes > 0) {
+        minutes--;
+        seconds = 59;
+      } else {
+        clearInterval(timer);
+        countDisplay.textContent = "Terminé !";
+        return;
+      }
+    }
+
+    countDisplay.textContent =
+      minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+  }, 1000);
+};
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let value = inputEl.value;
+  let minutes = value;
+  let seconds = 0;
+
+  playTimer(minutes, seconds);
+});
